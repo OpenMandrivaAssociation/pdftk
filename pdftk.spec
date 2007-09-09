@@ -1,6 +1,6 @@
 %define name pdftk
 %define version 1.41
-%define release %mkrel 2
+%define release %mkrel 3
 
 %define gcj_version %(gcj --version | head -n 1 | awk '{print $3}')
 
