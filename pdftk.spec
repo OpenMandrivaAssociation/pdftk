@@ -38,7 +38,7 @@ Keep one in the top drawer of your desktop and use it to:
 
 %build
 cd pdftk
-%__perl -pi -e 's|VERSUFF=.*|VERSUFF= -%{gcj_version}|' Makefile.Mandrake
+%__perl -pi -e "s|VERSUFF=.*|VERSUFF= -%{gcj_version}|" Makefile.Mandrake
 %__perl -pi -e 's|CXXFLAGS=|CXXFLAGS+=|' Makefile.Mandrake
 
 export CXXFLAGS=$RPM_OPT_FLAGS
