@@ -2,7 +2,7 @@
 %define version 1.41
 %define release %mkrel 3
 
-%define gcj_version %(gcj --version | head -n 1 | awk '{print $3}')
+%define gcj_version $(gcj --version | head -n 1 | awk '{print $3}')
 
 Summary: 	Pdftk stand for Pdf Tool Kit
 Name: 		%{name}
