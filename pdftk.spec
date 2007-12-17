@@ -12,7 +12,6 @@ Source0: 	%{name}-%{version}.tar.bz2
 License: 	GPL
 Group: 		Publishing
 Url: 		http://www.accesspdf.com/pdftk/
-BuildRoot: 	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires: 	libgcj-devel
 BuildRequires: 	gcc-java > 3
 
