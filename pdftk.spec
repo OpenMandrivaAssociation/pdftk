@@ -1,20 +1,16 @@
-%define name pdftk
-%define version 1.41
-%define release %mkrel 3
-
-%define gcj_version $(gcj --version | head -n 1 | awk '{print $3}')
-
-Summary: 	Pdftk stand for Pdf Tool Kit
-Name: 		%{name}
-Version: 	%{version}
-Release: 	%{release}
-Source0: 	%{name}-%{version}.tar.bz2
-License: 	GPL
-Group: 		Publishing
-Url: 		http://www.accesspdf.com/pdftk/
-BuildRoot: 	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
-BuildRequires: 	libgcj-devel
-BuildRequires: 	gcc-java > 3
+Name:           pdftk
+Version:        1.41
+Release:        %mkrel 4
+Summary:        PDF Tool Kit
+License:        GPL
+Group:          Publishing
+URL:            http://www.pdfhacks.com/pdftk/
+Source0:        http://www.pdfhacks.com/pdftk/%{name}-%{version}.tar.bz2
+Patch0:         pdftk-1.41-rpmopt.patch
+Patch1:         pdftk-1.41-system-libgcj.patch
+Patch2:         pdftk-1.41-gcjh.patch
+BuildRequires:  gcj-tools
+BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
 Pdftk is a simple tool for doing everyday things with PDF documents.
@@ -35,35 +31,34 @@ Keep one in the top drawer of your desktop and use it to:
 
 %prep
 %setup -q
+%patch0 -p1 -b .rpmopt
+%patch1 -p0 -b .system-libgcj
+%patch2 -p0 -b .gcjh
+
+%{__perl} -pi -e "s|VERSUFF=.*|VERSUFF= |" pdftk/Makefile.Mandrake
+%{__perl} -pi -e "s/\r$//g" pdftk.1.txt
+
+%{__rm} -r java_libs/gnu_local java_libs/java_local java_libs/gnu
 
 %build
-cd pdftk
-%__perl -pi -e "s|VERSUFF=.*|VERSUFF= -%{gcj_version}|" Makefile.Mandrake
-%__perl -pi -e 's|CXXFLAGS=|CXXFLAGS+=|' Makefile.Mandrake
-
-export CXXFLAGS=$RPM_OPT_FLAGS
-
-# Work around for a buggy gcj configuration on the cluster:
-export CLASSPATH=./
-make -f Makefile.Mandrake 
+pushd pdftk
+%{__make} -f Makefile.Mandrake 
+popd
 
 %install
-rm -rf $RPM_BUILD_ROOT
-%__install -d -m 755 $RPM_BUILD_ROOT%{_bindir}
-%__install -d -m 755 $RPM_BUILD_ROOT%{_mandir}/man1
-%__perl -pi -e "s/\r\n/\n/" pdftk.1.txt
-%__install -m755 pdftk/pdftk -D $RPM_BUILD_ROOT%{_bindir}/pdftk
+%{__rm} -rf %{buildroot}
 
-%__bzip2 debian/pdftk.1
-%__install -m755 debian/pdftk.1.bz2 -D $RPM_BUILD_ROOT%{_mandir}/man1/pdftk.1.bz2
+%{__mkdir_p} %{buildroot}%{_bindir}
+%{__cp} -a pdftk/pdftk %{buildroot}%{_bindir}/pdftk
+
+%{__mkdir_p} %{buildroot}%{_mandir}/man1
+%{__cp} -a debian/pdftk.1 %{buildroot}%{_mandir}/man1/pdftk.1
 
 %clean
-%__rm -rf $RPM_BUILD_ROOT
+%{__rm} -rf %{buildroot}
 
 %files
-%defattr(-,root,root)
+%defattr(0644,root,root,0755)
 %doc pdftk.1.html pdftk.1.txt
+%attr(0755,root,root) %{_bindir}/pdftk
 %{_mandir}/man1/pdftk.1*
-%{_bindir}/pdftk
-
-
