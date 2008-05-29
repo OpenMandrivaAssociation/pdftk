@@ -9,7 +9,7 @@ Source0:        http://www.pdfhacks.com/pdftk/%{name}-%{version}.tar.bz2
 Patch0:         pdftk-1.41-rpmopt.patch
 Patch1:         pdftk-1.41-system-libgcj.patch
 Patch2:         pdftk-1.41-gcjh.patch
-BuildRequires:  gcj-tools
+BuildRequires:  gcc-java
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
