@@ -1,6 +1,6 @@
 Name:           pdftk
 Version:        1.41
-Release:        %mkrel 5
+Release:        %mkrel 6
 Summary:        PDF Tool Kit
 License:        GPL
 Group:          Publishing
@@ -9,7 +9,8 @@ Source0:        http://www.pdfhacks.com/pdftk/%{name}-%{version}.tar.bz2
 Patch0:         pdftk-1.41-rpmopt.patch
 Patch1:         pdftk-1.41-system-libgcj.patch
 Patch2:         pdftk-1.41-gcjh.patch
-BuildRequires:  java-gcj-compat-devel
+BuildRequires:  gcc-java
+BuildRequires:  gcj-tools
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
@@ -35,14 +36,13 @@ Keep one in the top drawer of your desktop and use it to:
 %patch1 -p0 -b .system-libgcj
 %patch2 -p0 -b .gcjh
 
-%{__perl} -pi -e "s|VERSUFF=.*|VERSUFF= |" pdftk/Makefile.Mandrake
 %{__perl} -pi -e "s/\r$//g" pdftk.1.txt
 
 %{__rm} -r java_libs/gnu_local java_libs/java_local java_libs/gnu
 
 %build
 pushd pdftk
-%{__make} -f Makefile.Mandrake 
+%{__make} GCJ=gcj GCJFLAGS="%{optflags} -I`pwd`/../java_libs -Wno-deprecated -Wno-unused" GCJH=gcjh CXX=%{__cxx} VERSUFF=-$(rpm -q --queryformat "%{VERSION}" gcj-tools) -f Makefile.Mandrake
 popd
 
 %install
