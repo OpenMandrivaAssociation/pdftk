@@ -41,7 +41,7 @@ Keep one in the top drawer of your desktop and use it to:
 
 %build
 pushd pdftk
-%{__make} GCJ=gcj GCJFLAGS="%{optflags} -I`pwd`/../java_libs -Wno-deprecated -Wno-unused" GCJH=gcjh CXX=%{__cxx} VERSUFF=-$(rpm -q --queryformat "%{VERSION}" gcj-tools) -f Makefile.Mandrake
+%{__make} GCJ=gcj GCJFLAGS="%{optflags} -I`pwd`/../java_libs -Wno-all" GCJH=gcjh CXX=g++ VERSUFF=-$(rpm -q --queryformat "%{VERSION}" gcj-tools) -f Makefile.Mandrake
 popd
 
 %install
