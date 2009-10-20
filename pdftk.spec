@@ -1,6 +1,6 @@
 Name:           pdftk
 Version:        1.41
-Release:        %mkrel 8
+Release:        %mkrel 9
 Summary:        PDF Tool Kit
 License:        GPLv2+
 Group:          Publishing
@@ -11,6 +11,7 @@ Patch1:         pdftk-1.41-system-libgcj.patch
 Patch2:         pdftk-1.41-gcjh.patch
 BuildRequires:  java-devel-gcj
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root
+Requires:	bouncycastle
 
 %description
 Pdftk is a simple tool for doing everyday things with PDF documents.
