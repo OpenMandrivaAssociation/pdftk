@@ -1,6 +1,6 @@
 Name:           pdftk
 Version:        1.41
-Release:        %mkrel 9
+Release:        %mkrel 10
 Summary:        PDF Tool Kit
 License:        GPLv2+
 Group:          Publishing
