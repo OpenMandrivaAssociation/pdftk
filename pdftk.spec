@@ -1,7 +1,7 @@
 %define gcj_support 1
 Name:		pdftk
 Version:	1.44
-Release:	%mkrel 1
+Release:	%mkrel 2
 Summary:	PDF Tool Kit
 License:	GPLv2+
 Group:		Publishing
@@ -9,7 +9,7 @@ URL:		http://www.pdfhacks.com/pdftk/
 Source0:	http://www.pdfhacks.com/pdftk/%{name}-%{version}-src.zip
 Patch0:		pdftk-1.44-makefile-fix.patch
 BuildRequires:	java-devel-gcj
-BuildRequires:	libgcj-devel
+BuildRequires:	libgcj4.4-devel
 BuildRequires:	unzip
 BuildRequires:	fastjar
 BuildRequires:	dos2unix
