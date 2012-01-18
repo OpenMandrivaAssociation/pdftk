@@ -13,7 +13,6 @@ BuildRequires:	libgcj-devel
 BuildRequires:	unzip
 BuildRequires:	fastjar
 BuildRequires:	dos2unix
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}
 Requires:	bouncycastle
 
 %description
@@ -48,16 +47,11 @@ GCJFLAGS="%{optflags} -I`pwd`/../java -Wno-all" %{__make} -f Makefile.Redhat
 popd
 
 %install
-%{__rm} -rf %{buildroot}
-
 %{__mkdir_p} %{buildroot}%{_bindir}
 %{__cp} -a pdftk/pdftk %{buildroot}%{_bindir}/pdftk
 
 %{__mkdir_p} %{buildroot}%{_mandir}/man1
 %{__cp} -a pdftk.1 %{buildroot}%{_mandir}/man1/pdftk.1
-
-%clean
-%{__rm} -rf %{buildroot}
 
 %files
 %defattr(0644,root,root,0755)
