@@ -43,7 +43,7 @@ dos2unix changelog.txt
 
 %build
 pushd pdftk
-GCJFLAGS="%{optflags} -I`pwd`/../java -Wno-all" %{__make} -f Makefile.Redhat
+GCJFLAGS="%{optflags} -I`pwd`/../java -Wno-all" %{__make} LIBGCJ=%{_javadir}/libgcj-$(gcc -dumpversion).jar -f Makefile.Redhat
 popd
 
 %install
