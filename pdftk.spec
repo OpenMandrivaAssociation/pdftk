@@ -1,7 +1,7 @@
 %define gcj_support 1
 Name:		pdftk
 Version:	1.44
-Release:	5
+Release:	4
 Summary:	PDF Tool Kit
 License:	GPLv2+
 Group:		Publishing
