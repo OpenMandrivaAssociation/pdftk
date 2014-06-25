@@ -39,7 +39,6 @@ Keep one in the top drawer of your desktop and use it to:
 
 perl -pi -e "s/\r$//g" pdftk.1.txt
 
-rm -r java/gnu_local java/java_local
 dos2unix changelog.txt
 
 %build
