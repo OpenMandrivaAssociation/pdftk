@@ -1,17 +1,20 @@
---- pdftk/Makefile.Redhat	2012-07-25 18:33:08.335659777 +0400
-+++ pdftk/Makefile.Redhat.2	2012-07-25 18:36:40.013665118 +0400
-@@ -30,11 +30,11 @@
- # tools
- # need direct path to libgcj for gcjh (starting in gcj 4.1.2 per Aurélien GÉRÔME)
- TOOLPATH=
--export VERSUFF=
-+export VERSUFF=-$(shell gcj -dumpversion)
+--- pdftk/Makefile.Redhat	2010-09-16 20:23:20.000000000 +0200
++++ pdftk/Makefile.Redhat.2	2010-12-01 02:21:36.000000000 +0100
+@@ -34,7 +34,7 @@
  export CXX= $(TOOLPATH)g++$(VERSUFF)
  export GCJ= $(TOOLPATH)gcj$(VERSUFF)
--export GCJH= $(TOOLPATH)gcjh$(VERSUFF)
+ export GCJH= $(TOOLPATH)gcjh$(VERSUFF)
 -export GJAR= $(TOOLPATH)fastjar$(VERSUFF)
-+export GCJH= $(TOOLPATH)gcjh
 +export GJAR= $(TOOLPATH)fastjar
  export LIBGCJ= /usr/share/java/libgcj$(VERSUFF).jar
  export AR= ar
  export RM= rm
+@@ -73,7 +73,7 @@
+ #
+ #  
+ export CPPFLAGS= -DPATH_DELIM=0x2f -DASK_ABOUT_WARNINGS=false -DUNBLOCK_SIGNALS -fdollars-in-identifiers
+-export CXXFLAGS= -Wall -Wextra -Weffc++ -O2
++export CXXFLAGS= -Wall -Wextra -Weffc++ -O2 -I/usr/lib/gcc/i586-mandriva-linux-gnu/4.9.1/include/
+ export GCJFLAGS= -Wall -Wextra -O2
+ export GCJHFLAGS= -force
+ export LDLIBS= -lgcj
