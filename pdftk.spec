@@ -9,7 +9,7 @@ Group:		Publishing
 URL:		http://www.pdfhacks.com/pdftk/
 Source0:	http://www.pdflabs.com/tools/pdftk-the-pdf-toolkit/%{name}-%{version}-src.zip
 Patch0:		pdftk-1.44-makefile-fix.patch
-BuildRequires:	gcc-java
+BuildRequires:	java-devel-gcj
 BuildRequires:	libgcj-devel
 BuildRequires:	unzip
 BuildRequires:	fastjar
@@ -37,23 +37,18 @@ Keep one in the top drawer of your desktop and use it to:
 %setup -q -n %{name}-%{version}-dist
 %patch0 -p0 -b .makefix
 
-perl -pi -e "s/\r$//g" pdftk.1.txt
-
-dos2unix changelog.txt
+dos2unix changelog.txt pdftk.1.txt
 
 %build
 pushd pdftk
-GCJFLAGS="%{optflags} -I`pwd`/../java -Wno-all" %{__make} -f Makefile.Redhat
+	GCJFLAGS="%{optflags} -I`pwd`/../java -Wno-all" make -f Makefile.Redhat
 popd
 
 %install
-mkdir -p %{buildroot}%{_bindir}
-cp -a pdftk/pdftk %{buildroot}%{_bindir}/pdftk
-
-mkdir -p %{buildroot}%{_mandir}/man1
-cp -a pdftk.1 %{buildroot}%{_mandir}/man1/pdftk.1
+install -Dpm0755 pdftk/pdftk %{buildroot}%{_bindir}/pdftk
+install -Dpm0644 pdftk.1 %{buildroot}%{_mandir}/man1/pdftk.1
 
 %files
 %doc pdftk.1.html pdftk.1.txt changelog.txt
-%attr(0755,root,root) %{_bindir}/pdftk
+%{_bindir}/pdftk
 %{_mandir}/man1/pdftk.1*
