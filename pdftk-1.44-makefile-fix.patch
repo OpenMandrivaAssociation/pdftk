@@ -14,7 +14,7 @@
  #  
  export CPPFLAGS= -DPATH_DELIM=0x2f -DASK_ABOUT_WARNINGS=false -DUNBLOCK_SIGNALS -fdollars-in-identifiers
 -export CXXFLAGS= -Wall -Wextra -Weffc++ -O2
-+export CXXFLAGS= -Wall -Wextra -Weffc++ -O2 -I/usr/lib/gcc/i586-mandriva-linux-gnu/4.9.1/include/
++export CXXFLAGS= -Wall -Wextra -Weffc++ -O2 -I/usr/include/libgcj-4.9.1/
  export GCJFLAGS= -Wall -Wextra -O2
  export GCJHFLAGS= -force
  export LDLIBS= -lgcj
