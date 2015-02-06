@@ -2,7 +2,7 @@
 
 Name:		pdftk
 Version:	2.02
-Release:	1
+Release:	2
 Summary:	PDF Tool Kit
 License:	GPLv2+
 Group:		Publishing
