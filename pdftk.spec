@@ -9,8 +9,7 @@ Group:		Publishing
 URL:		http://www.pdfhacks.com/pdftk/
 Source0:	http://www.pdflabs.com/tools/pdftk-the-pdf-toolkit/%{name}-%{version}-src.zip
 Patch0:		pdftk-1.44-makefile-fix.patch
-BuildRequires:	java-devel-gcj
-BuildRequires:	libgcj-devel
+BuildRequires:	java-devel
 BuildRequires:	unzip
 BuildRequires:	fastjar
 BuildRequires:	dos2unix
