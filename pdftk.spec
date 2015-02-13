@@ -40,7 +40,7 @@ tar -xf %{SOURCE1}
 %build
 
 %install
-cp -R %{name}-*/usr %{buildroot}/
+cp -R /usr %{buildroot}/
 rm -fr %{_docdir}/%{name}/changelog* 
 rm -fr %{_docdir}/%{name}/NEWS* 
 
