@@ -1,0 +1,20 @@
+--- pdftk/pdftk.cc.orig	2013-07-30 00:10:22.000000000 +0200
++++ pdftk/pdftk.cc	2013-08-02 16:25:58.771848500 +0200
+@@ -106,6 +106,8 @@
+ #include "pdftk/com/lowagie/text/pdf/PdfFileSpecification.h"
+ #include "pdftk/com/lowagie/text/pdf/PdfBoolean.h"
+ #include "pdftk/com/lowagie/text/pdf/PdfDestination.h"
++#include "pdftk/com/lowagie/text/pdf/PdfEncodings.h"
++#include "pdftk/com/lowagie/text/pdf/BaseFont.h"
+ 
+ #include "pdftk/com/lowagie/text/pdf/PdfAnnotation.h"
+ 
+@@ -3840,6 +3842,8 @@
+ 			JvInitClass(&itext::PdfStream::class$);
+ 			JvInitClass(&itext::RandomAccessFileOrArray::class$);
+ 			JvInitClass(&itext::PdfContentByte::class$);
++			JvInitClass(&itext::PdfEncodings::class$);
++			JvInitClass(&itext::BaseFont::class$);
+ 
+ 			JvInitClass(&itext::PdfNameTree::class$);
+ 			JvInitClass(&itext::PdfOutline::class$);

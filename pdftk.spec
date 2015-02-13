@@ -8,14 +8,13 @@ License:	GPLv2+
 Group:		Publishing
 URL:		http://www.pdfhacks.com/pdftk/
 Source0:	http://www.pdflabs.com/tools/pdftk-the-pdf-toolkit/%{name}-%{version}-src.zip
-Patch0:		pdftk-1.44-makefile-fix.patch
+Patch0:		bug-427046_pdftk.cc.patch
 BuildRequires:	java-devel
-BuildRequires:	pkgconfig(libgcj-4.8)
+BuildRequires:	pkgconfig(libgcj-4.9)
 BuildRequires:	unzip
 BuildRequires:	fastjar
 BuildRequires:	dos2unix
 Requires:	bouncycastle
-
 
 %description
 Pdftk is a simple tool for doing everyday things with PDF documents.
@@ -36,20 +35,22 @@ Keep one in the top drawer of your desktop and use it to:
 
 %prep
 %setup -q -n %{name}-%{version}-dist
-%patch0 -p0 -b .makefix
-
-dos2unix changelog.txt pdftk.1.txt
+%patch0 -p0
+%__cp %{S:1} pdftk/Makefile
+%__sed -i 's/\r$//' changelog.txt license_gpl_pdftk/*.txt license_gpl_pdftk/*/*.txt
+%__chmod 644 changelog.txt license_gpl_pdftk/*.txt license_gpl_pdftk/*/*.txt
 
 %build
-pushd pdftk
-	GCJFLAGS="%{optflags} -I`pwd`/../java -Wno-all" make -f Makefile.Redhat
-popd
+%__make -C pdftk CXXFLAGS="%optflags" GCJFLAGS="$(echo " %optflags" | sed 's/ -D/ -Wp,-D/g')"
 
 %install
-install -Dpm0755 pdftk/pdftk %{buildroot}%{_bindir}/pdftk
-install -Dpm0644 pdftk.1 %{buildroot}%{_mandir}/man1/pdftk.1
+%__install -Dm 0755 pdftk/%name %{buildroot}%{_bindir}/%name
+%__install -Dpm 0644 %{name}.1 %{buildroot}%{_mandir}/man1/%{name}.1
+
+%clean
+%__rm -rf %buildroot
 
 %files
-%doc pdftk.1.html pdftk.1.txt changelog.txt
-%{_bindir}/pdftk
-%{_mandir}/man1/pdftk.1*
+%{_bindir}/%name
+%{_mandir}/man1/%{name}.*
+%doc changelog.txt license_gpl_pdftk/*.txt license_gpl_pdftk/*/*.txt
