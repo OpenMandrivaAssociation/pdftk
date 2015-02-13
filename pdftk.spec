@@ -10,6 +10,7 @@ Group:		Publishing
 URL:		http://www.pdfhacks.com/pdftk/
 Source0:	http://www.pdflabs.com/tools/pdftk-the-pdf-toolkit/%{name}-%{version}-src.zip
 Patch0:		bug-427046_pdftk.cc.patch
+Patch1:		pdftk-1.44-makefile-fix.patch
 BuildRequires:  gcc-java
 BuildRequires:  gcc-c++
 BuildRequires:	java-devel
@@ -39,6 +40,7 @@ Keep one in the top drawer of your desktop and use it to:
 %prep
 %setup -q -n %{name}-%{version}-dist
 %patch0 -p0
+%patch1 -p0
 %__sed -i 's/\r$//' changelog.txt license_gpl_pdftk/*.txt license_gpl_pdftk/*/*.txt
 %__chmod 644 changelog.txt license_gpl_pdftk/*.txt license_gpl_pdftk/*/*.txt
 
