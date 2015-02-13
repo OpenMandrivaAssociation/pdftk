@@ -41,7 +41,7 @@ Keep one in the top drawer of your desktop and use it to:
 
 %build
 pushd pdftk
-	CXXFLAGS="%optflags" GCJFLAGS="$(echo " %optflags" | sed 's/ -D/ -Wp,-D/g')" make -f Makefile.Redhat
+	GCJFLAGS="%{optflags} -I`pwd`/../java -Wno-all" make -f Makefile.Redhat
 popd
 
  
