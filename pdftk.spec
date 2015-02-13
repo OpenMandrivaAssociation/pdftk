@@ -9,6 +9,8 @@ Group:		Publishing
 URL:		http://www.pdfhacks.com/pdftk/
 Source0:	http://www.pdflabs.com/tools/pdftk-the-pdf-toolkit/%{name}-%{version}-src.zip
 Patch0:		bug-427046_pdftk.cc.patch
+BuildRequires:  gcc-java
+BuildRequires:  gcc-c++
 BuildRequires:	java-devel
 BuildRequires:	pkgconfig(libgcj-4.9)
 BuildRequires:	unzip
