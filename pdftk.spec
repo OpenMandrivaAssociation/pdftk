@@ -36,7 +36,6 @@ Keep one in the top drawer of your desktop and use it to:
 %prep
 %setup -q -n %{name}-%{version}-dist
 %patch0 -p0
-%__cp %{S:1} pdftk/Makefile
 %__sed -i 's/\r$//' changelog.txt license_gpl_pdftk/*.txt license_gpl_pdftk/*/*.txt
 %__chmod 644 changelog.txt license_gpl_pdftk/*.txt license_gpl_pdftk/*/*.txt
 
