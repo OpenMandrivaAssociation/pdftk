@@ -40,8 +40,8 @@ Keep one in the top drawer of your desktop and use it to:
 %__chmod 644 changelog.txt license_gpl_pdftk/*.txt license_gpl_pdftk/*/*.txt
 
 %build
-%__make -C pdftk CXXFLAGS="%optflags" GCJFLAGS="$(echo " %optflags" | sed 's/ -D/ -Wp,-D/g')"
-
+%__make -C pdftk CXXFLAGS="%optflags" GCJFLAGS="$(echo " %optflags" | sed 's/ -D/ -Wp,-D/g')" Makefile.Redhat
+ 
 %install
 %__install -Dm 0755 pdftk/%name %{buildroot}%{_bindir}/%name
 %__install -Dpm 0644 %{name}.1 %{buildroot}%{_mandir}/man1/%{name}.1
