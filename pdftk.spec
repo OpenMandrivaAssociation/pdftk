@@ -1,3 +1,6 @@
+%define _enable_debug_packages %{nil}
+%define debug_package %{nil}
+
 Name:		pdftk
 Version:	2.02
 Release:	1
@@ -9,7 +12,7 @@ Source0:	%{name}-%{version}-x64.tar.xz
 Source1:	%{name}-%{version}-x32.tar.xz
 
 Requires:	bouncycastle
-Requires:       libgcj.so.14%{_arch_tag_suffix}
+Requires:   libgcj.so.14%{_arch_tag_suffix}
 
 
 %description
@@ -41,10 +44,8 @@ tar -xf %{SOURCE1}
 
 %install
 cp -R /usr %{buildroot}/
-rm -fr %{_docdir}/%{name}/changelog* 
-rm -fr %{_docdir}/%{name}/NEWS* 
 
 %files
-%doc copyright
+%doc copyright changelog* NEWS*
 %{_bindir}/pdftk
 %{_mandir}/man1/pdftk.1*
