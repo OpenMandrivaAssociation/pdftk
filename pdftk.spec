@@ -13,12 +13,8 @@ Patch0:		bug-427046_pdftk.cc.patch
 Patch1:		pdftk-1.44-makefile-fix.patch
 BuildRequires:  gcc-java
 BuildRequires:  gcc-c++
-BuildRequires:	java-devel
-BuildRequires:	pkgconfig(libgcj-4.9)
 BuildRequires:	unzip
-BuildRequires:	fastjar
 BuildRequires:	dos2unix
-Requires:	bouncycastle
 
 %description
 Pdftk is a simple tool for doing everyday things with PDF documents.
@@ -53,9 +49,6 @@ popd
 %install
 %__install -Dm 0755 pdftk/%name %{buildroot}%{_bindir}/%name
 %__install -Dpm 0644 %{name}.1 %{buildroot}%{_mandir}/man1/%{name}.1
-
-%clean
-%__rm -rf %buildroot
 
 %files
 %{_bindir}/%name
