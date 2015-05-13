@@ -42,6 +42,8 @@ Keep one in the top drawer of your desktop and use it to:
 
 %build
 pushd pdftk
+        # work around slightly broke gcj compiler
+        LD_PRELOAD=%{_libdir}/libgcj.so \
 	GCJFLAGS="%{optflags} -I`pwd`/../java -Wno-all" make -f Makefile.Redhat
 popd
 
