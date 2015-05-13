@@ -1,22 +1,24 @@
 --- pdftk/Makefile.Redhat	2010-09-16 20:23:20.000000000 +0200
 +++ pdftk/Makefile.Redhat.2	2010-12-01 02:21:36.000000000 +0100
-@@ -22,11 +22,11 @@
+@@ -22,12 +22,12 @@
  # tools
  # need direct path to libgcj for gcjh (starting in gcj 4.1.2 per Aurélien GÉRÔME)
  TOOLPATH=
 -export VERSUFF=
-+export VERSUFF=4.8.3
++export VERSUFF=
  export CXX= $(TOOLPATH)g++$(VERSUFF)
  export GCJ= $(TOOLPATH)gcj$(VERSUFF)
  export GCJH= $(TOOLPATH)gcjh$(VERSUFF)
 -export GJAR= $(TOOLPATH)fastjar$(VERSUFF)
 +export GJAR= $(TOOLPATH)gjar$(VERSUFF)
- export LIBGCJ= /usr/share/java/libgcj$(VERSUFF).jar
+-export LIBGCJ= /usr/share/java/libgcj$(VERSUFF).jar
++export LIBGCJ= /usr/share/java/libgcj-4.8.3.jar
  export AR= ar
  export RM= rm
+ export ARFLAGS= rs
 @@ -65,8 +65,8 @@
  #
- #..
+ #  
  export CPPFLAGS= -DPATH_DELIM=0x2f -DASK_ABOUT_WARNINGS=false -DUNBLOCK_SIGNALS -fdollars-in-identifiers
 -export CXXFLAGS= -Wall -Wextra -Weffc++ -O2
 -export GCJFLAGS= -Wall -Wextra -O2

@@ -1,4 +1,5 @@
 %define gcj_support 1
+%define debug_package %{nil}
 
 Name:		pdftk
 Version:	2.02
@@ -9,12 +10,9 @@ Group:		Publishing
 URL:		http://www.pdfhacks.com/pdftk/
 Source0:	http://www.pdflabs.com/tools/pdftk-the-pdf-toolkit/%{name}-%{version}-src.zip
 Patch0:		pdftk-1.44-makefile-fix.patch
-BuildRequires:	java-devel-gcj
-BuildRequires:	libgcj-devel
+BuildRequires:	gcc-java
 BuildRequires:	unzip
-BuildRequires:	fastjar
 BuildRequires:	dos2unix
-Requires:	bouncycastle
 
 %description
 Pdftk is a simple tool for doing everyday things with PDF documents.
@@ -41,7 +39,10 @@ dos2unix changelog.txt pdftk.1.txt
 
 %build
 pushd pdftk
-	GCJFLAGS="%{optflags} -I`pwd`/../java -Wno-all" make -f Makefile.Redhat
+  # work around slightly broke gcj compiler
+  LD_PRELOAD=%{_libdir}/libgcj.so \
+  GCJFLAGS="%{optflags} -I`pwd`/../java -Wno-all" \
+  make -f Makefile.Redhat
 popd
 
 %install
