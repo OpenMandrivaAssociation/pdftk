@@ -7,7 +7,7 @@ Release:	3
 Summary:	PDF Tool Kit
 License:	GPLv2+
 Group:		Publishing
-URL:		http://www.pdfhacks.com/pdftk/
+URL:		https://www.pdfhacks.com/pdftk/
 Source0:	http://www.pdflabs.com/tools/pdftk-the-pdf-toolkit/%{name}-%{version}-src.zip
 Patch0:		bug-427046_pdftk.cc.patch
 Patch1:		pdftk-1.44-makefile-fix.patch
